@@ -1,0 +1,71 @@
+components:
+  schemas:
+    UserResponse:
+      type: object
+      properties:
+        msg:
+          type: string
+        totalUsers:
+          type: integer
+        totalPages:
+          type: integer
+        perPage:
+          type: integer
+        currentPage:
+          type: integer
+        users:
+          type: array
+          items:
+            type: object
+            properties:
+              _id:
+                type: string
+              username:
+                type: string
+              email:
+                type: string
+              role:
+                type: array
+                items:
+                  type: string
+              profile:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  last_name:
+                    type: string
+                  country:
+                    type: string
+                  preferences:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        categoryId:
+                          type: string
+                  avatar:
+                    type: string
+                  skills:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        categoryId:
+                          type: string
+                        description:
+                          type: string
+                        level:
+                          type: string
+                        _id:
+                          type: string
+                  user:
+                    type: string
+              schedules:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ScheduleSchema'

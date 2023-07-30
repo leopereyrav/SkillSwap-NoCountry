@@ -1,0 +1,83 @@
+paths:
+  /api/v1/members:
+    get:
+      tags:
+        - Profile
+      summary: Get all members
+      responses:
+        '200':
+          description: Returns an array of members and a message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                  members:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/MemberResponse'
+    post:
+      tags:
+        - Profile
+      summary: The user create his member profile
+      security:
+        - token: []
+      requestBody:
+        required: true
+        description: The user submits required data to create his member profile
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MemberCreate'
+      responses:
+        '201':
+          description: Returns an object with message
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MemberResponse'
+
+    put:
+      tags:
+        - Profile
+      summary: The user update his member profile
+      security:
+        - token: []
+      requestBody:
+        required: true
+        description: The user submits all his member and user profile information fields to update
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MemberUpdate'
+      responses:
+        '201':
+          description: Returns an object with message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+  /api/v1/members/{id}:
+    get:
+      tags:
+        - Profile
+      summary: Get a member by id
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+            required: true
+            description: Client send the member id in the url
+      responses:
+        '201':
+          description: Returns an object with the member information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MemberResponse'

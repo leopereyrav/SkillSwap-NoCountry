@@ -1,0 +1,9 @@
+paths:
+  /api/v1/health:
+    get:
+      tags:
+        - Server
+      summary: Verifies if the server is running
+      responses:
+        '200':
+          description: Returns a message if server is running

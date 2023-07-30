@@ -1,0 +1,11 @@
+components:
+  schemas:
+    CategoriesSchema:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        _id:
+          type: string

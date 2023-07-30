@@ -1,0 +1,139 @@
+paths:
+  /api/v1/schedule:
+    get:
+      tags:
+        - Schedule
+      summary: Users schedules
+      responses:
+        '200':
+          description: Recive an array with all schedules
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  data:
+                    items:
+                      $ref: '#/components/schemas/ScheduleSchema'
+    post:
+      tags:
+        - Schedule
+      summary: Create schedule
+      requestBody:
+        required: true
+        description: The user sends data to create a schedule
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                day_of_week:
+                  type: string
+                start_time:
+                  type: string
+                end_time:
+                  type: string
+                user:
+                  type: string
+      responses:
+        '200':
+          description: Returns an object with message and the created schedule
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  ScheduleCreate:
+                    $ref: '#/components/schemas/ScheduleSchema'
+
+  /api/v1/schedule/{id}:
+    get:
+      tags:
+        - Schedule
+      summary: User schedules
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Client send user Id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Returns an object with message and array with all schedules from a user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  ScheduleCreate:
+                    items:
+                      $ref: '#/components/schemas/ScheduleSchema'
+
+    patch:
+      tags:
+        - Schedule
+      summary: Update schedule
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Client send user Id
+          schema:
+            type: string
+      requestBody:
+        required: true
+        description: User send one or all data to update
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                day_of_week:
+                  type: string
+                start_time:
+                  type: string
+                end_time:
+                  type: string
+      responses:
+        '200':
+          description: Returns an object with message and the updated schedule
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  update:
+                    $ref: '#/components/schemas/ScheduleSchema'
+
+    delete:
+      tags:
+        - Schedule
+      summary: Delete schedule
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Client send user Id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Returns an object with message and the deleted schedule
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  scheduleDelete:
+                    $ref: '#/components/schemas/ScheduleSchema'

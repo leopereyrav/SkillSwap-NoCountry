@@ -1,0 +1,140 @@
+paths:
+  /api/v1/categories:
+    get:
+      tags:
+        - Categories
+      summary: Get all categories
+      security:
+        - token: []
+      responses:
+        '200':
+          description: Recive an object with message and an array with all categories
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  data:
+                    items:
+                      $ref: '#/components/schemas/CategoriesSchema'
+
+    post:
+      tags:
+        - Categories
+      summary: Create category
+      security:
+        - token: []
+      requestBody:
+        required: true
+        description: The user sends data to create a new category
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+      responses:
+        '200':
+          description: Returns an object with message and the created category
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  data:
+                    $ref: '#/components/schemas/CategoriesSchema'
+
+  /api/v1/categories/{id}:
+    get:
+      tags:
+        - Categories
+      summary: Get category by id
+      security:
+        - token: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The user sends Id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Return an object with message and the category
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  data:
+                    $ref: '#/components/schemas/CategoriesSchema'
+
+    put:
+      tags:
+        - Categories
+      summary: Update category by id
+      security:
+        - token: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The user sends Id
+          schema:
+            type: string
+      requestBody:
+        required: true
+        description: The user sends data to update a category
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+      responses:
+        '200':
+          description: Returns an object with message and the created category
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  data:
+                    $ref: '#/components/schemas/CategoriesSchema'
+    delete:
+      tags:
+        - Categories
+      summary: Delete category by id
+      security:
+        - token: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The user sends Id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Recive an object with message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
